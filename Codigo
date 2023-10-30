@@ -1,0 +1,83 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+struct Process {
+    int id;
+    int arrival_time;
+    int burst_time;
+    int priority;
+    int waiting_time;
+    int turnaround_time;
+};
+
+bool compareArrivalTime(const Process& p1, const Process& p2) {
+    return p1.arrival_time < p2.arrival_time;
+}
+
+bool comparePriority(const Process& p1, const Process& p2) {
+    return p1.priority < p2.priority;
+}
+
+void simulateRoundRobin(std::vector<Process>& processes, int time_quantum) {
+    // Implementa el algoritmo de planificación Round-Robin
+    // ...
+}
+
+void simulatePriority(std::vector<Process>& processes) {
+    // Implementa el algoritmo de planificación por Prioridad
+    // ...
+}
+
+void simulateSJN(std::vector<Process>& processes) {
+    // Implementa el algoritmo de planificación Shortest Job Next (SJN)
+    // ...
+}
+
+int main() {
+    std::vector<Process> processes = {
+        {1, 0, 6, 2, 0, 0},
+        {2, 1, 8, 1, 0, 0},
+        {3, 2, 7, 3, 0, 0},
+        {4, 3, 3, 2, 0, 0},
+        {5, 4, 4, 1, 0, 0}
+    };
+
+    // Ordenar los procesos por tiempo de llegada
+    std::sort(processes.begin(), processes.end(), compareArrivalTime);
+
+    int time_quantum = 2; // Para Round-Robin, ajusta según tus necesidades
+
+    // Simular Round-Robin
+    simulateRoundRobin(processes, time_quantum);
+
+    // Reiniciar el estado de los procesos
+    for (auto& process : processes) {
+        process.waiting_time = 0;
+        process.turnaround_time = 0;
+    }
+
+    // Ordenar los procesos por prioridad
+    std::sort(processes.begin(), processes.end(), comparePriority);
+
+    // Simular Prioridad
+    simulatePriority(processes);
+
+    // Reiniciar el estado de los procesos
+    for (auto& process : processes) {
+        process.waiting_time = 0;
+        process.turnaround_time = 0;
+    }
+
+    // Ordenar los procesos por tiempo de ejecución
+    std::sort(processes.begin(), processes.end(), compareArrivalTime);
+
+    // Simular SJN
+    simulateSJN(processes);
+
+    // Calcular métricas y mostrar resultados
+    // ...
+
+    return 0;
+}
